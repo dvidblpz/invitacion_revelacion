@@ -1,0 +1,2835 @@
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+
+    --gold: #d7b36a;
+    --gold-light: #f0d99a;
+    --gold-dark: #9a6d2e;
+
+    --wine: #4b1d38;
+    --wine-dark: #170b16;
+
+    --pink: #d49ab3;
+
+    --cream: #f8f0e5;
+
+    --white: #ffffff;
+
+    --black: #090609;
+
+    --text: #eadfe4;
+
+    --muted: #b9aab2;
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 0;
+
+}
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+body {
+
+    background:
+        var(--wine-dark);
+
+    color:
+        var(--text);
+
+    font-family:
+        "Montserrat",
+        sans-serif;
+
+    overflow-x: hidden;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================================================
+   PROTECCIÓN CASUAL
+========================================================= */
+
+body,
+body * {
+
+    -webkit-user-select: none;
+
+    user-select: none;
+
+}
+
+img {
+
+    -webkit-user-drag: none;
+
+    user-drag: none;
+
+    pointer-events: none;
+
+}
+
+
+/* =========================================================
+   SCROLL LOCK
+========================================================= */
+
+body.lock-scroll {
+
+    overflow: hidden;
+
+}
+
+
+/* =========================================================
+   PRELOADER
+========================================================= */
+
+.preloader {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        var(--wine-dark);
+
+    transition:
+        opacity .8s ease,
+        visibility .8s ease;
+
+}
+
+.preloader.hidden {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+}
+
+.preloader-content {
+
+    text-align: center;
+
+}
+
+.preloader-symbol {
+
+    font-size: 50px;
+
+    color:
+        var(--gold);
+
+    animation:
+        rotateStar 2s linear infinite;
+
+}
+
+.preloader p {
+
+    margin-top: 15px;
+
+    color:
+        var(--muted);
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+}
+
+
+/* =========================================================
+   PORTADA
+========================================================= */
+
+.cover {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 100vh;
+
+    overflow: hidden;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(212,154,179,.15),
+            transparent 45%
+        ),
+
+        linear-gradient(
+            135deg,
+            #130912,
+            #2b1428,
+            #10070e
+        );
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+
+}
+
+.cover-hidden {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+}
+
+.cover-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    width:
+        min(90%, 650px);
+
+    text-align: center;
+
+}
+
+.cover-small {
+
+    margin-bottom: 12px;
+
+    color:
+        var(--gold);
+
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+}
+
+.cover-title {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-weight: 400;
+
+    font-size:
+        clamp(44px, 8vw, 76px);
+
+    line-height: 1;
+
+    color:
+        var(--white);
+
+}
+
+.cover-name {
+
+    margin: 10px 0;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-weight: 400;
+
+    font-size:
+        clamp(48px, 9vw, 82px);
+
+    line-height: 1.1;
+
+    color:
+        var(--gold-light);
+
+}
+
+.cover-date {
+
+    margin-bottom: 38px;
+
+    color:
+        rgba(255,255,255,.75);
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+}
+
+
+/* =========================================================
+   SOBRE
+========================================================= */
+
+.envelope-button {
+
+    display: inline-flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 20px;
+
+    border: 0;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    color: white;
+
+    -webkit-tap-highlight-color: transparent;
+
+}
+
+.envelope {
+
+    position: relative;
+
+    width: 300px;
+
+    height: 200px;
+
+    filter:
+        drop-shadow(
+            0 25px 35px rgba(0,0,0,.45)
+        );
+
+    transition:
+        transform .5s ease;
+
+}
+
+.envelope-back {
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 6px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a87735,
+            #e3c37d,
+            #96652b
+        );
+
+    z-index: 1;
+
+}
+
+.envelope-letter {
+
+    position: absolute;
+
+    left: 15%;
+
+    right: 15%;
+
+    bottom: 0;
+
+    height: 160px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fffdf8,
+            #f2e6d5
+        );
+
+    color:
+        var(--gold-dark);
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size: 62px;
+
+    z-index: 2;
+
+    transition:
+        transform 1s ease;
+
+}
+
+.envelope-front {
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    height: 63%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #c99b52,
+            #a87330
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            50% 55%,
+            100% 0,
+            100% 100%,
+            0 100%
+        );
+
+    z-index: 4;
+
+}
+
+.envelope-flap {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e1c17a,
+            #ae7730
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 58%
+        );
+
+    transform-origin:
+        top center;
+
+    z-index: 5;
+
+    transition:
+        transform 1s cubic-bezier(.4,0,.2,1);
+
+}
+
+.envelope-seal {
+
+    position: absolute;
+
+    top: 48%;
+
+    left: 50%;
+
+    width: 55px;
+
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    background:
+        radial-gradient(
+            circle,
+            #f2d990,
+            #9e6e2e
+        );
+
+    color: white;
+
+    font-size: 24px;
+
+    box-shadow:
+        0 4px 20px rgba(0,0,0,.35);
+
+    z-index: 10;
+
+    transition:
+        opacity .4s ease,
+        transform .5s ease;
+
+}
+
+.envelope-button:hover .envelope {
+
+    transform:
+        translateY(-8px);
+
+}
+
+.envelope.is-open .envelope-flap {
+
+    transform:
+        rotateX(180deg);
+
+}
+
+.envelope.is-open .envelope-letter {
+
+    transform:
+        translateY(-100px);
+
+}
+
+.envelope.is-open .envelope-seal {
+
+    opacity: 0;
+
+    transform:
+        translate(-50%, -50%)
+        scale(.5);
+
+}
+
+.open-text {
+
+    color:
+        rgba(255,255,255,.8);
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    animation:
+        pulseText 2s infinite;
+
+}
+
+
+/* =========================================================
+   ESTRELLAS PORTADA
+========================================================= */
+
+.stars,
+.stars::before,
+.stars::after {
+
+    position: absolute;
+
+    inset: 0;
+
+    content: "";
+
+    pointer-events: none;
+
+}
+
+.stars::before {
+
+    background-image:
+
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.7) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        90px 90px;
+
+    opacity: .35;
+
+}
+
+.stars::after {
+
+    background-image:
+
+        radial-gradient(
+            circle,
+            rgba(215,179,106,.8) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        150px 150px;
+
+    opacity: .25;
+
+}
+
+
+/* =========================================================
+   NAVEGACIÓN
+========================================================= */
+
+.main-nav {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    z-index: 5000;
+
+    padding: 18px 0;
+
+    background:
+        rgba(12,6,11,.85);
+
+    backdrop-filter:
+        blur(15px);
+
+    transform:
+        translateY(-100%);
+
+    transition:
+        transform .5s ease;
+
+}
+
+.main-nav.visible {
+
+    transform:
+        translateY(0);
+
+}
+
+.nav-container {
+
+    width:
+        min(1100px, 90%);
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+.nav-logo {
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size: 32px;
+
+    color:
+        var(--gold);
+
+    text-decoration: none;
+
+}
+
+.nav-links {
+
+    display: flex;
+
+    gap: 25px;
+
+}
+
+.nav-links a {
+
+    color:
+        rgba(255,255,255,.8);
+
+    text-decoration: none;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    transition:
+        color .3s ease;
+
+}
+
+.nav-links a:hover {
+
+    color:
+        var(--gold);
+
+}
+
+.menu-button {
+
+    display: none;
+
+    border: 0;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 25px;
+
+}
+
+
+/* =========================================================
+   MÚSICA
+========================================================= */
+
+.music-toggle {
+
+    position: fixed;
+
+    right: 25px;
+
+    bottom: 25px;
+
+    z-index: 4000;
+
+    width: 50px;
+
+    height: 50px;
+
+    border:
+        1px solid
+        rgba(215,179,106,.5);
+
+    border-radius: 50%;
+
+    background:
+        rgba(25,10,22,.9);
+
+    color:
+        var(--gold);
+
+    cursor: pointer;
+
+    font-size: 20px;
+
+}
+
+.music-toggle.playing {
+
+    animation:
+        musicPulse 1.5s infinite;
+
+}
+
+
+/* =========================================================
+   PROGRESO
+========================================================= */
+
+.scroll-progress {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    z-index: 6000;
+
+    width: 0%;
+
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--gold-dark),
+            var(--gold-light)
+        );
+
+}
+
+
+/* =========================================================
+   SECCIONES
+========================================================= */
+
+.section {
+
+    position: relative;
+
+    padding:
+        120px 0;
+
+}
+
+.container {
+
+    width:
+        min(1100px, 90%);
+
+    margin: auto;
+
+}
+
+.section-heading {
+
+    max-width: 700px;
+
+    margin:
+        0 auto 60px;
+
+    text-align: center;
+
+}
+
+.eyebrow {
+
+    margin-bottom: 12px;
+
+    color:
+        var(--gold);
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    letter-spacing: 4px;
+
+}
+
+h2 {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(42px, 6vw, 65px);
+
+    font-weight: 400;
+
+    line-height: 1.05;
+
+    color: white;
+
+}
+
+h2 span {
+
+    display: block;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    color:
+        var(--gold);
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+}
+
+.hero-background {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        url("./images/fondo.jpg")
+        center / cover
+        no-repeat;
+
+    transform:
+        scale(1.03);
+
+}
+
+.hero-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            rgba(20,8,18,.45),
+            rgba(20,8,18,.85)
+        );
+
+}
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    width:
+        min(700px, 90%);
+
+    text-align: center;
+
+}
+
+.hero h1 {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(70px, 12vw, 120px);
+
+    font-weight: 400;
+
+    line-height: .8;
+
+}
+
+.hero h1 span {
+
+    display: block;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size: .7em;
+
+    color:
+        var(--gold);
+
+}
+
+.hero-text {
+
+    max-width: 500px;
+
+    margin:
+        15px auto;
+
+    color:
+        rgba(255,255,255,.78);
+
+}
+
+.ornament {
+
+    margin:
+        25px 0;
+
+    color:
+        var(--gold);
+
+    font-size: 25px;
+
+}
+
+.scroll-button {
+
+    display: inline-flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 25px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+}
+
+.scroll-button span {
+
+    color:
+        var(--gold);
+
+    font-size: 25px;
+
+}
+
+
+/* =========================================================
+   STORY
+========================================================= */
+
+.story-section {
+
+    background:
+        linear-gradient(
+            180deg,
+            #180b16,
+            #24101f
+        );
+
+}
+
+.story-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 80px;
+
+    align-items: center;
+
+}
+
+.image-frame {
+
+    position: relative;
+
+    padding: 10px;
+
+    border:
+        1px solid
+        rgba(215,179,106,.5);
+
+}
+
+.image-frame::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -12px;
+
+    border:
+        1px solid
+        rgba(215,179,106,.2);
+
+    pointer-events: none;
+
+}
+
+.image-frame img {
+
+    display: block;
+
+    width: 100%;
+
+    height: 600px;
+
+    object-fit: cover;
+
+}
+
+.story-content p {
+
+    margin:
+        20px 0;
+
+    color:
+        var(--muted);
+
+}
+
+.gold-line {
+
+    width: 80px;
+
+    height: 1px;
+
+    margin:
+        25px 0;
+
+    background:
+        var(--gold);
+
+}
+
+.gold-line.center {
+
+    margin:
+        25px auto;
+
+}
+
+.signature {
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size: 50px;
+
+    color:
+        var(--gold) !important;
+
+}
+
+
+/* =========================================================
+   COUNTDOWN
+========================================================= */
+
+.countdown-section {
+
+    background:
+        #10070e;
+
+    text-align: center;
+
+}
+
+.countdown {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 25px;
+
+}
+
+.countdown-item {
+
+    min-width: 90px;
+
+}
+
+.countdown-item span {
+
+    display: block;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 60px;
+
+    color:
+        var(--gold);
+
+}
+
+.countdown-item small {
+
+    color:
+        var(--muted);
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+
+}
+
+.countdown-separator {
+
+    color:
+        var(--gold-dark);
+
+    font-size: 35px;
+
+}
+
+
+/* =========================================================
+   FECHA
+========================================================= */
+
+.date-section {
+
+    background:
+        #1d0d1a;
+
+}
+
+.date-card {
+
+    max-width: 600px;
+
+    margin: auto;
+
+    padding:
+        70px 40px;
+
+    text-align: center;
+
+    border:
+        1px solid
+        rgba(215,179,106,.35);
+
+    background:
+        rgba(255,255,255,.025);
+
+}
+
+.date-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color:
+        var(--gold);
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+}
+
+.date-number {
+
+    margin-top: 20px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 150px;
+
+    line-height: .9;
+
+    color: white;
+
+}
+
+.date-year {
+
+    font-size: 18px;
+
+    letter-spacing: 5px;
+
+    color:
+        var(--gold);
+
+}
+
+.date-card p {
+
+    color:
+        var(--muted);
+
+}
+
+
+/* =========================================================
+   EVENTOS
+========================================================= */
+
+.events-section {
+
+    background:
+        linear-gradient(
+            180deg,
+            #180b16,
+            #10070e
+        );
+
+}
+
+.events-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 30px;
+
+}
+
+.event-card {
+
+    padding:
+        50px 35px;
+
+    text-align: center;
+
+    border:
+        1px solid
+        rgba(215,179,106,.2);
+
+    background:
+        rgba(255,255,255,.025);
+
+    transition:
+        transform .4s ease,
+        border-color .4s ease;
+
+}
+
+.event-card:hover {
+
+    transform:
+        translateY(-8px);
+
+    border-color:
+        rgba(215,179,106,.6);
+
+}
+
+.event-card.featured {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(215,179,106,.08),
+            rgba(255,255,255,.025)
+        );
+
+}
+
+.event-icon {
+
+    margin-bottom: 15px;
+
+    color:
+        var(--gold);
+
+    font-size: 35px;
+
+}
+
+.event-label {
+
+    color:
+        var(--gold);
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+}
+
+.event-card h3 {
+
+    margin:
+        15px 0;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 34px;
+
+    font-weight: 400;
+
+    color: white;
+
+}
+
+.event-line {
+
+    width: 50px;
+
+    height: 1px;
+
+    margin:
+        20px auto;
+
+    background:
+        var(--gold);
+
+}
+
+.event-time {
+
+    font-size: 30px;
+
+    color:
+        var(--gold);
+
+}
+
+.event-card > p:not(.event-label):not(.event-time) {
+
+    color:
+        var(--muted);
+
+}
+
+
+/* =========================================================
+   MAPS / WAZE
+========================================================= */
+
+.navigation-buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 25px;
+
+    flex-wrap: wrap;
+
+}
+
+.navigation-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    min-width: 125px;
+
+    padding:
+        11px 16px;
+
+    border:
+        1px solid
+        rgba(215,179,106,.4);
+
+    color:
+        var(--gold);
+
+    text-decoration: none;
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        color .3s ease;
+
+}
+
+.navigation-button span {
+
+    font-size: 15px;
+
+}
+
+.navigation-button:hover {
+
+    transform:
+        translateY(-3px);
+
+    background:
+        var(--gold);
+
+    color:
+        var(--wine-dark);
+
+}
+
+.calendar-container {
+
+    text-align: center;
+
+    margin-top: 50px;
+
+}
+
+.calendar-button {
+
+    display: inline-block;
+
+    padding:
+        12px 22px;
+
+    border:
+        1px solid
+        rgba(215,179,106,.5);
+
+    color:
+        var(--gold);
+
+    text-decoration: none;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    transition:
+        background .3s ease,
+        color .3s ease;
+
+}
+
+.calendar-button:hover {
+
+    background:
+        var(--gold);
+
+    color:
+        var(--wine-dark);
+
+}
+
+
+/* =========================================================
+   CASTILLO
+========================================================= */
+
+.castle-section {
+
+    position: relative;
+
+    min-height: 700px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+}
+
+.castle-image {
+
+    position: absolute;
+
+    inset: 0;
+
+}
+
+.castle-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+.castle-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            rgba(20,5,17,.25),
+            rgba(20,5,17,.85)
+        );
+
+}
+
+.castle-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    width:
+        min(700px, 90%);
+
+    text-align: center;
+
+}
+
+.castle-content p {
+
+    margin-top: 25px;
+
+    color:
+        rgba(255,255,255,.8);
+
+}
+
+
+/* =========================================================
+   GALERÍA
+========================================================= */
+
+.gallery-section {
+
+    background:
+        #130912;
+
+}
+
+.gallery-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1.4fr 1fr;
+
+    grid-template-rows:
+        280px 280px;
+
+    gap: 15px;
+
+}
+
+.gallery-item {
+
+    position: relative;
+
+    overflow: hidden;
+
+    border: 0;
+
+    padding: 0;
+
+    cursor: pointer;
+
+    background: #000;
+
+}
+
+.gallery-item.large {
+
+    grid-row:
+        span 2;
+
+}
+
+.gallery-item img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform .7s ease;
+
+}
+
+.gallery-item:hover img {
+
+    transform:
+        scale(1.06);
+
+}
+
+.gallery-item span {
+
+    position: absolute;
+
+    right: 15px;
+
+    bottom: 15px;
+
+    padding:
+        7px 12px;
+
+    background:
+        rgba(0,0,0,.65);
+
+    color: white;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+}
+
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+
+.lightbox {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 20000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 30px;
+
+    background:
+        rgba(0,0,0,.95);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity .3s ease;
+
+}
+
+.lightbox.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+.lightbox img {
+
+    max-width: 90%;
+
+    max-height: 85vh;
+
+    object-fit: contain;
+
+}
+
+.lightbox-close {
+
+    position: absolute;
+
+    top: 20px;
+
+    right: 30px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 45px;
+
+    cursor: pointer;
+
+}
+
+
+/* =========================================================
+   DRESS
+========================================================= */
+
+.dress-section {
+
+    background:
+        #1d0d1a;
+
+}
+
+.dress-card {
+
+    max-width: 650px;
+
+    margin: auto;
+
+    padding:
+        70px 30px;
+
+    text-align: center;
+
+    border:
+        1px solid
+        rgba(215,179,106,.25);
+
+}
+
+.dress-card p:not(.eyebrow) {
+
+    color:
+        var(--muted);
+
+}
+
+.dress-icons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 30px;
+
+    margin-top: 30px;
+
+    color:
+        var(--gold);
+
+    font-size: 22px;
+
+}
+
+
+/* =========================================================
+   JUEGO
+========================================================= */
+
+.game-section {
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            #10070e,
+            #24101f,
+            #160912
+        );
+
+}
+
+.game-background {
+
+    position: absolute;
+
+    inset: 0;
+
+    opacity: .25;
+
+    background-image:
+
+        radial-gradient(
+            circle,
+            rgba(215,179,106,.8) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        90px 90px;
+
+    pointer-events: none;
+
+}
+
+.game-container {
+
+    position: relative;
+
+    z-index: 2;
+
+    width:
+        min(900px, 90%);
+
+    margin: auto;
+
+}
+
+.game-card {
+
+    position: relative;
+
+    max-width: 700px;
+
+    margin: auto;
+
+    padding:
+        50px 30px;
+
+    text-align: center;
+
+    border:
+        1px solid
+        rgba(215,179,106,.35);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.04),
+            rgba(215,179,106,.03)
+        );
+
+    box-shadow:
+        0 30px 80px
+        rgba(0,0,0,.25);
+
+}
+
+.game-crown {
+
+    font-size: 45px;
+
+    margin-bottom: 10px;
+
+}
+
+.game-card h3 {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 34px;
+
+    font-weight: 400;
+
+    color: white;
+
+}
+
+.game-description {
+
+    max-width: 500px;
+
+    margin:
+        15px auto 25px;
+
+    color:
+        var(--muted);
+
+}
+
+
+/* =========================================================
+   SCORE
+========================================================= */
+
+.game-progress {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 90px;
+
+    padding:
+        8px 15px;
+
+    margin-bottom: 25px;
+
+    border:
+        1px solid
+        rgba(215,179,106,.35);
+
+    color:
+        var(--gold);
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+}
+
+
+/* =========================================================
+   TABLERO
+========================================================= */
+
+.game-board {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 330px;
+
+    overflow: hidden;
+
+    border:
+        1px solid
+        rgba(215,179,106,.15);
+
+    background:
+
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(215,179,106,.08),
+            transparent 55%
+        ),
+
+        #0d070c;
+
+}
+
+
+/* =========================================================
+   ESTRELLAS
+========================================================= */
+
+.magic-star {
+
+    position: absolute;
+
+    width: 52px;
+
+    height: 52px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background:
+        rgba(215,179,106,.08);
+
+    color:
+        var(--gold-light);
+
+    font-size: 30px;
+
+    cursor: pointer;
+
+    text-shadow:
+        0 0 15px
+        rgba(240,217,154,.9);
+
+    transition:
+        transform .3s ease,
+        opacity .4s ease,
+        background .3s ease;
+
+    animation:
+        starFloat 2.5s ease-in-out infinite;
+
+}
+
+.magic-star:hover {
+
+    transform:
+        scale(1.25);
+
+    background:
+        rgba(215,179,106,.18);
+
+}
+
+.star-one {
+
+    top: 25%;
+
+    left: 18%;
+
+}
+
+.star-two {
+
+    top: 62%;
+
+    right: 20%;
+
+    animation-delay:
+        .7s;
+
+}
+
+.star-three {
+
+    top: 18%;
+
+    right: 28%;
+
+    animation-delay:
+        1.3s;
+
+}
+
+.magic-star.found {
+
+    transform:
+        scale(1.5);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+}
+
+
+/* =========================================================
+   MENSAJE DEL JUEGO
+========================================================= */
+
+.game-message {
+
+    margin-top: 25px;
+
+    padding: 15px;
+
+    color:
+        var(--muted);
+
+}
+
+.game-message-icon {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color:
+        var(--gold);
+
+    font-size: 25px;
+
+}
+
+
+/* =========================================================
+   VICTORIA
+========================================================= */
+
+.game-win {
+
+    display: none;
+
+    margin-top: 25px;
+
+    padding: 30px;
+
+    border:
+        1px solid
+        rgba(215,179,106,.4);
+
+    background:
+        rgba(215,179,106,.05);
+
+    animation:
+        victoryAppear .7s ease;
+
+}
+
+.game-win.active {
+
+    display: block;
+
+}
+
+.victory-crown {
+
+    font-size: 50px;
+
+    margin-bottom: 10px;
+
+}
+
+.game-win h3 {
+
+    color:
+        var(--gold-light);
+
+}
+
+.game-win p {
+
+    margin-top: 10px;
+
+    color:
+        var(--muted);
+
+}
+
+.game-reset {
+
+    margin-top: 20px;
+
+    padding:
+        11px 20px;
+
+    border:
+        1px solid
+        rgba(215,179,106,.5);
+
+    background:
+        transparent;
+
+    color:
+        var(--gold);
+
+    cursor: pointer;
+
+    font-family:
+        "Montserrat",
+        sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+}
+
+
+/* =========================================================
+   RSVP
+========================================================= */
+
+.rsvp-section {
+
+    background:
+        #10070e;
+
+}
+
+.rsvp-card {
+
+    max-width: 750px;
+
+    margin: auto;
+
+    padding:
+        80px 30px;
+
+    text-align: center;
+
+    border:
+        1px solid
+        rgba(215,179,106,.35);
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(215,179,106,.07),
+            transparent 70%
+        );
+
+}
+
+.rsvp-card > p {
+
+    color:
+        var(--muted);
+
+}
+
+.rsvp-deadline {
+
+    margin-top: 20px;
+
+}
+
+.rsvp-deadline strong {
+
+    color:
+        var(--gold);
+
+}
+
+.whatsapp-button {
+
+    display: inline-block;
+
+    margin-top: 30px;
+
+    padding:
+        16px 30px;
+
+    background:
+        #25D366;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 1px;
+
+    transition:
+        transform .3s ease;
+
+}
+
+.whatsapp-button:hover {
+
+    transform:
+        translateY(-4px);
+
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.final-section {
+
+    position: relative;
+
+    min-height: 700px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+}
+
+.final-background {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        url("./images/portada.jpg")
+        center / cover
+        no-repeat;
+
+}
+
+.final-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        rgba(15,5,12,.65);
+
+}
+
+.final-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+
+}
+
+.final-content > p:not(.eyebrow):not(.final-name) {
+
+    color:
+        var(--muted);
+
+}
+
+.final-name {
+
+    margin-top: 10px;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size: 55px;
+
+    color:
+        var(--gold);
+
+}
+
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+.back-to-top {
+
+    position: fixed;
+
+    right: 25px;
+
+    bottom: 90px;
+
+    z-index: 3500;
+
+    width: 45px;
+
+    height: 45px;
+
+    border:
+        1px solid
+        rgba(215,179,106,.4);
+
+    border-radius: 50%;
+
+    background:
+        rgba(20,8,17,.9);
+
+    color:
+        var(--gold);
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity .3s ease;
+
+}
+
+.back-to-top.visible {
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+.reveal {
+
+    opacity: 0;
+
+    transform:
+        translateY(40px);
+
+    transition:
+        opacity .9s ease,
+        transform .9s ease;
+
+}
+
+.reveal.visible {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* =========================================================
+   ANIMACIONES
+========================================================= */
+
+@keyframes pulseText {
+
+    0%,
+    100% {
+        opacity: .45;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+}
+
+@keyframes rotateStar {
+
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+@keyframes musicPulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 0 0
+            rgba(215,179,106,.2);
+    }
+
+    50% {
+        box-shadow:
+            0 0 0 12px
+            rgba(215,179,106,0);
+    }
+
+}
+
+@keyframes starFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-10px)
+            rotate(8deg);
+
+    }
+
+}
+
+@keyframes victoryAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px)
+            scale(.95);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .nav-links {
+
+        position: fixed;
+
+        top: 70px;
+
+        left: 0;
+
+        width: 100%;
+
+        display: none;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 25px;
+
+        padding: 30px;
+
+        background:
+            rgba(15,6,13,.97);
+
+    }
+
+    .nav-links.open {
+
+        display: flex;
+
+    }
+
+    .menu-button {
+
+        display: block;
+
+    }
+
+    .story-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+
+    }
+
+    .story-image {
+
+        max-width: 600px;
+
+        margin: auto;
+
+    }
+
+    .events-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .gallery-grid {
+
+        grid-template-columns:
+            1fr 1fr;
+
+        grid-template-rows:
+            250px 250px;
+
+    }
+
+    .gallery-item.large {
+
+        grid-row:
+            span 2;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .section {
+
+        padding:
+            85px 0;
+
+    }
+
+    .envelope {
+
+        width: 260px;
+
+        height: 175px;
+
+    }
+
+    .envelope-letter {
+
+        height: 140px;
+
+        font-size: 52px;
+
+    }
+
+    .countdown {
+
+        gap: 8px;
+
+    }
+
+    .countdown-item {
+
+        min-width: 55px;
+
+    }
+
+    .countdown-item span {
+
+        font-size: 38px;
+
+    }
+
+    .countdown-separator {
+
+        font-size: 22px;
+
+    }
+
+    .date-number {
+
+        font-size: 110px;
+
+    }
+
+    .gallery-grid {
+
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        grid-template-rows:
+            repeat(3, 300px);
+
+    }
+
+    .gallery-item.large {
+
+        grid-row: auto;
+
+    }
+
+    .image-frame img {
+
+        height: 450px;
+
+    }
+
+    .music-toggle {
+
+        right: 15px;
+
+        bottom: 15px;
+
+    }
+
+    .back-to-top {
+
+        right: 15px;
+
+    }
+
+    .navigation-buttons {
+
+        flex-direction: column;
+
+        align-items: center;
+
+    }
+
+    .navigation-button {
+
+        width: 100%;
+
+        max-width: 220px;
+
+    }
+
+    .game-board {
+
+        height: 300px;
+
+    }
+
+    .magic-star {
+
+        width: 45px;
+
+        height: 45px;
+
+        font-size: 25px;
+
+    }
+
+    .star-one {
+
+        left: 10%;
+
+        top: 20%;
+
+    }
+
+    .star-two {
+
+        right: 10%;
+
+        top: 65%;
+
+    }
+
+    .star-three {
+
+        right: 20%;
+
+        top: 15%;
+
+    }
+
+}
+
+
+/* =========================================================
+   REDUCIR MOVIMIENTO
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            .01ms !important;
+
+    }
+
+}
