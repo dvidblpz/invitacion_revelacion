@@ -3239,28 +3239,425 @@ img {
 }
 
 
-/* ============================================================
-   REVEAL ANIMATION
-============================================================ */
+/* =========================================================
+   NUESTRA NUEVA SECCIÓN
+========================================================= */
 
-.reveal {
-    opacity: 0;
+.wishes-section {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(231,167,185,.18),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(141,185,217,.18),
+            transparent 28%
+        ),
+        linear-gradient(
+            180deg,
+            #fffaf7,
+            #fff
+        );
+
+}
+
+
+.wishes-glow {
+
+    position:
+        absolute;
+
+    width:
+        320px;
+
+    height:
+        320px;
+
+    border-radius:
+        50%;
+
+    filter:
+        blur(60px);
+
+    opacity:
+        .45;
+
+    pointer-events:
+        none;
+
+}
+
+
+.wishes-glow-left {
+
+    top:
+        8%;
+
+    left:
+        -170px;
+
+    background:
+        rgba(231,167,185,.25);
+
+}
+
+
+.wishes-glow-right {
+
+    right:
+        -170px;
+
+    bottom:
+        5%;
+
+    background:
+        rgba(141,185,217,.25);
+
+}
+
+
+.wishes-card {
+
+    position:
+        relative;
+
+    max-width:
+        920px;
+
+    margin:
+        55px auto 0;
+
+    padding:
+        65px 90px;
+
+    overflow:
+        hidden;
+
+    text-align:
+        center;
+
+    background:
+        rgba(255,255,255,.88);
+
+    border:
+        1px solid rgba(201,164,91,.25);
+
+    box-shadow:
+        0 30px 70px rgba(60,45,50,.10);
+
+    backdrop-filter:
+        blur(12px);
+
+}
+
+
+.wishes-card::before,
+.wishes-card::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        120px;
+
+    height:
+        120px;
+
+    border:
+        1px solid rgba(201,164,91,.25);
+
+    border-radius:
+        50%;
+
+}
+
+
+.wishes-card::before {
+
+    top:
+        -75px;
+
+    left:
+        -75px;
+
+}
+
+
+.wishes-card::after {
+
+    right:
+        -75px;
+
+    bottom:
+        -75px;
+
+}
+
+
+.wishes-card-decoration {
+
+    position:
+        absolute;
+
+    top:
+        50%;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        25px;
+
+    color:
+        var(--gold);
+
+    font-size:
+        17px;
 
     transform:
-        translateY(35px);
+        translateY(-50%);
+
+    opacity:
+        .7;
+
+}
+
+
+.wishes-decoration-left {
+
+    left:
+        30px;
+
+}
+
+
+.wishes-decoration-right {
+
+    right:
+        30px;
+
+}
+
+
+.wishes-letter {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    max-width:
+        680px;
+
+    margin:
+        auto;
+
+}
+
+
+.wishes-greeting {
+
+    margin-bottom:
+        28px;
+
+    color:
+        var(--gold);
+
+    font-family:
+        var(--font-script);
+
+    font-size:
+        clamp(28px,4vw,42px);
+
+}
+
+
+.wishes-letter > p:not(.wishes-greeting) {
+
+    margin:
+        0 auto 18px;
+
+    color:
+        var(--dark-soft);
+
+    font-size:
+        15px;
+
+    line-height:
+        1.95;
+
+}
+
+
+.wishes-signature {
+
+    margin-top:
+        35px;
+
+    color:
+        #8b817e;
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        2px;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.wishes-signature strong {
+
+    display:
+        block;
+
+    margin-top:
+        8px;
+
+    color:
+        var(--dark);
+
+    font-family:
+        var(--font-title);
+
+    font-size:
+        25px;
+
+    letter-spacing:
+        0;
+
+    text-transform:
+        none;
+
+}
+
+
+.wishes-pillars {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:
+        20px;
+
+    margin-top:
+        28px;
+
+}
+
+
+.wish-pillar {
+
+    padding:
+        30px 24px;
+
+    text-align:
+        center;
+
+    background:
+        rgba(255,255,255,.72);
+
+    border:
+        1px solid rgba(50,40,45,.07);
+
+    box-shadow:
+        0 15px 35px rgba(50,40,45,.05);
 
     transition:
-        opacity .8s ease,
-        transform .8s ease;
+        transform var(--transition);
+
 }
 
-.reveal.visible {
-    opacity: 1;
+
+.wish-pillar:hover {
 
     transform:
-        translateY(0);
+        translateY(-5px);
+
 }
 
+
+.wish-icon {
+
+    width:
+        50px;
+
+    height:
+        50px;
+
+    margin:
+        0 auto 15px;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    color:
+        white;
+
+    border-radius:
+        50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--pink),
+            var(--blue)
+        );
+
+}
+
+
+.wish-pillar h3 {
+
+    margin-bottom:
+        10px;
+
+    font-family:
+        var(--font-title);
+
+    font-size:
+        25px;
+
+}
+
+
+.wish-pillar p {
+
+    color:
+        var(--dark-soft);
+
+    font-size:
+        12px;
+
+    line-height:
+        1.8;
+
+}
 
 /* ============================================================
    RESPONSIVE
